@@ -22,4 +22,20 @@ Nothing much different than what I'm doing now
 
 ## What I've tried, and what happened
 
-I've used doubles a lot, but not with shared examples.
+The test code is shown in `spec/shared_examples_spec.rb`.
+
+### First attempt
+
+The first attempt, tagged 'v1', used `let()` and `let!()` to attempt
+to create local variables that were set to doubles.
+
+In addition, these variables were passed to the included examples as
+block parameters, which is also incorrect.
+
+### Second attempt
+
+The second attempt, tagged 'v2', gets it right.
+
+After reading through the RSpec book section on shared examples, it
+became clear the thing to do is create instance variables in a
+`before` block, and call them in the shared examples.
