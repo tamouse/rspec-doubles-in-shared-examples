@@ -1,0 +1,66 @@
+
+testing shared example doubles using instance variables
+  first try (these should pass)
+    when contact has a phone number
+      returns the phone number
+    when a collection is empty
+      has no members
+  second try (these should fail)
+    when contact has a phone number
+      returns the phone number (FAILED - 1)
+    when a collection is empty
+      has no members (FAILED - 2)
+
+testing shared example doubles as let() variables
+  first try (these should pass)
+    when contact has a phone number
+      returns the phone number
+    when a collection is empty
+      has no members
+  second try (these should fail)
+    when contact has a phone number
+      returns the phone number (FAILED - 3)
+    when a collection is empty
+      has no members (FAILED - 4)
+
+Failures:
+
+  1) testing shared example doubles using instance variables second try (these should fail) when contact has a phone number returns the phone number
+     Failure/Error: expect(@contact.phone).not_to be_nil
+       expected: not nil
+            got: nil
+     # ./spec/shared_examples_spec.rb:9:in `block (4 levels) in <top (required)>'
+
+  2) testing shared example doubles using instance variables second try (these should fail) when a collection is empty has no members
+     Failure/Error: expect(@collection.size).to eq(0)
+       
+       expected: 0
+            got: 12
+       
+       (compared using ==)
+     # ./spec/shared_examples_spec.rb:15:in `block (4 levels) in <top (required)>'
+
+  3) testing shared example doubles as let() variables second try (these should fail) when contact has a phone number returns the phone number
+     Failure/Error: expect(contact.phone).not_to be_nil
+       expected: not nil
+            got: nil
+     # ./spec/shared_examples_spec.rb:44:in `block (4 levels) in <top (required)>'
+
+  4) testing shared example doubles as let() variables second try (these should fail) when a collection is empty has no members
+     Failure/Error: expect(collection.size).to eq(0)
+       
+       expected: 0
+            got: 12
+       
+       (compared using ==)
+     # ./spec/shared_examples_spec.rb:50:in `block (4 levels) in <top (required)>'
+
+Finished in 0.00406 seconds (files took 0.09269 seconds to load)
+8 examples, 4 failures
+
+Failed examples:
+
+rspec ./spec/shared_examples_spec.rb:8 # testing shared example doubles using instance variables second try (these should fail) when contact has a phone number returns the phone number
+rspec ./spec/shared_examples_spec.rb:14 # testing shared example doubles using instance variables second try (these should fail) when a collection is empty has no members
+rspec ./spec/shared_examples_spec.rb:43 # testing shared example doubles as let() variables second try (these should fail) when contact has a phone number returns the phone number
+rspec ./spec/shared_examples_spec.rb:49 # testing shared example doubles as let() variables second try (these should fail) when a collection is empty has no members
