@@ -26,4 +26,12 @@ RSpec.describe "testing doubles for use in shared examples" do
     include_examples "this uses mocks", @contact, @collection
   end
 
+  describe "second try (these should fail)" do
+    before do
+      @contact = double('contact with no phone', phone: nil)
+      @collection = double('non-empty colleciton', size: 12)
+    end
+
+    include_examples "this uses mocks", @contact, @collection
+  end
 end
