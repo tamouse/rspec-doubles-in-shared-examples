@@ -2,7 +2,6 @@ require 'spec_helper'
 
 
 RSpec.describe "testing shared example doubles using instance variables" do
-
   shared_examples "this uses mocks" do
     context "when contact has a phone number" do
       it "returns the phone number" do
@@ -64,6 +63,48 @@ RSpec.describe "testing shared example doubles as let() variables" do
     let(:collection) { double('collection', size: 12) }
 
     include_examples "this uses mocks"
+  end
+
+end
+
+RSpec.describe "testing shared example doubles passed in a block" do
+  shared_examples "this uses mocks" do
+    context "when contact has a phone number" do
+      it "returns the phone number" do
+        expect(contact.phone).not_to be_nil
+      end
+    end
+
+    context "when a collection is empty" do
+      it "has no members" do
+        expect(collection.size).to eq(0)
+      end
+    end
+  end
+
+  describe "first try (these should pass)" do
+    include_examples "this uses mocks" do
+      let(:contact) { double('contact', phone: "+18005551212") }
+      let(:collection) { double('collection', size: 0) }
+    end
+  end
+
+  describe "second try (these should fail)" do
+    include_examples "this uses mocks" do
+      let(:contact) { double('contact', phone: nil) }
+      let(:collection) { double('collection', size: 12) }
+    end
+  end
+
+  describe "with actuals" do
+    include_examples "this uses mocks" do
+      let(:contact) do
+        Contact = Struct.new(:phone)
+        Contact.new("+18005551212")
+      end
+
+      let(:collection) { Array.new }
+    end
   end
 
 end
